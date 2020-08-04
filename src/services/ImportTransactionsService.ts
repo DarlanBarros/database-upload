@@ -9,12 +9,14 @@ class ImportTransactionsService {
     const data = await converCSV.loadCSV(filePath);
 
     const createTransaction = new CreateTransaction();
+    const transactions: Transaction[] = [];
 
-    data.forEach(element => {
-      createTransaction.execute(element);
+    data.forEach(async element => {
+      const transaction = await createTransaction.execute(element);
+      transactions.push(transaction);
     });
 
-    return data;
+    return transactions;
   }
 }
 
