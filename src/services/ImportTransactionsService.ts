@@ -13,9 +13,6 @@ class ImportTransactionsService {
     const createTransaction = new CreateTransaction();
     const transactions: Transaction[] = [];
 
-    /* data.forEach(element => {
-      createTransaction.execute(element);
-    }); */
     for (const element of data) {
       const transaction = await createTransaction.execute(element);
       transactions.push(transaction);

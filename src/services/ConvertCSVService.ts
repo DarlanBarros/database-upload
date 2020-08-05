@@ -24,7 +24,12 @@ class ConvertCSV {
       parseCSV.on('end', resolve);
     });
 
-    return lines;
+    const editedLines = lines.map(element => ({
+      ...element,
+      value: Number(element.value),
+    }));
+
+    return editedLines;
   }
 }
 
