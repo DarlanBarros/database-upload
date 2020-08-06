@@ -24,6 +24,10 @@ class CreateTransactionService {
 
     const createCategory = new CreateCategoryService();
 
+    if (type !== 'income' && type !== 'outcome') {
+      throw new AppError('type must be income or outcome', 400);
+    }
+
     const balance = await transactionsRepository.getBalance();
 
     if (type === 'outcome' && balance.total < value) {
